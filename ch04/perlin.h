@@ -2,6 +2,11 @@
 #define PERLINH
 
 #include <math.h>
+
+// This version of "perlin.h" includes turbulence function that produces an 
+// image with marble-like surfaces, but isn't quite the same as the images
+// produced in Ch. 4 of the book. 
+
 //inline float trilinear_interp(float c[2][2][2], float u, float v, float w) {
     //float accum = 0;
     //for (int i=0; i < 2; i++)
