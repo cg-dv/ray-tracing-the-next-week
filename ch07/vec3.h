@@ -1,3 +1,6 @@
+#ifndef VEC3H
+#define VEC3H
+
 #include <math.h>
 #include <stdlib.h>
 #include <iostream>
@@ -16,7 +19,7 @@ class vec3  {
         inline const vec3& operator+() const { return *this; }
         inline vec3 operator-() const { return vec3(-e[0], -e[1], -e[2]); }
         inline float operator[](int i) const { return e[i]; }
-        inline float operator[](int i) { return e[i]; };
+        inline float& operator[](int i) { return e[i]; };
 
         inline vec3& operator+=(const vec3 &v2);
         inline vec3& operator-=(const vec3 &v2);
@@ -108,7 +111,7 @@ inline vec3& vec3::operator/=(const vec3 &v){
     return *this;
 }
 
-inline vec3& vec3::operator-=(const vec3 &v){
+inline vec3& vec3::operator-=(const vec3& v){
     e[0]  -= v.e[0];
     e[1]  -= v.e[1];
     e[2]  -= v.e[2];
@@ -134,3 +137,5 @@ inline vec3& vec3::operator/=(const float t){
 inline vec3 unit_vector(vec3 v)  {
     return v / v.length();
 }
+
+#endif

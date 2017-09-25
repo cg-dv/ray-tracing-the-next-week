@@ -7,11 +7,9 @@
 #include "material.h"
 #include "bvh.h"
 #include "box.h"
-#include "aabb.h"
-#include "texture.h"
-#include "perlin.h"
-#include "aarect.h"
 #include "surface_texture.h"
+#include "aarect.h"
+#include "texture.h"
 
 vec3 color(const ray& r, hitable *world, int depth) {
     hit_record rec;
@@ -102,8 +100,8 @@ hitable *cornell_box() {
     list[i++] = new flip_normals(new xz_rect(0, 555, 0, 555, 555, white));
     list[i++] = new xz_rect(0, 555, 0, 555, 0, white);
     list[i++] = new flip_normals(new xy_rect(0, 555, 0, 555, 555, white));
-    list[i++] = new box(vec3(130, 0, 65), vec3(295, 165, 230), white); 
-    list[i++] = new box(vec3(265, 0, 295), vec3(430, 330, 460), white); 
+    list[i++] = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(165, 165, 165), white), -18), vec3(130, 0, 65)); 
+    list[i++] = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(165, 330, 165), white), 15), vec3(265, 0, 295)); 
     return new hitable_list(list, i);
 }
 
@@ -112,9 +110,8 @@ int main() {
     int ny = 400;
     int ns = 100;
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
-    //hitable *list[6];
+    hitable *list[8];
     float R = cos(M_PI/4);
-    //hitable *world = new hitable_list(list,6);
     hitable *world = cornell_box();
     
     vec3 lookfrom(278, 278, -800);
