@@ -106,7 +106,7 @@ hitable *cornell_box() {
 int main() {
     int nx = 400;
     int ny = 400;
-    int ns = 1000;
+    int ns = 10000;
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
     //hitable *list[6];
     float R = cos(M_PI/4);

@@ -8,7 +8,6 @@
 #include "aabb.h"
 #include "texture.h"
 #include "perlin.h"
-#include "surface_texture.h"
 
 vec3 color(const ray& r, hitable *world, int depth)  {
     hit_record rec;
@@ -32,7 +31,8 @@ vec3 color(const ray& r, hitable *world, int depth)  {
 hitable *random_scene() {
     int n = 500;
     hitable **list = new hitable*[n+1];
-    texture *checker = new checker_texture( new constant_texture(vec3(0.2, 0.3, 0.1)), new constant_texture(vec3(0.9, 0.9, 0.9)));
+    texture *checker = new checker_texture( new constant_texture(vec3(0.2, 0.3, 0.1)), 
+            new constant_texture(vec3(0.9, 0.9, 0.9)));
     list[0] = new sphere(vec3(0,-1000,0), 1000, new lambertian( checker));
     int i = 1;
     for (int a = -11; a < 11; a++) {
@@ -73,7 +73,7 @@ hitable *two_spheres() {
 }
 
 hitable *two_perlin_spheres() {
-    texture *pertext = new noise_texture();
+    texture *pertext = new noise_texture(4);
     hitable **list = new hitable*[2];
     list[0] = new sphere(vec3(0,-1000,0), 1000, new lambertian( pertext ));
     list[1] = new sphere(vec3(0,2,0), 2, new lambertian( pertext ));
@@ -83,17 +83,18 @@ hitable *two_perlin_spheres() {
 int main() {
     int nx = 300;
     int ny = 200;
-    int ns = 10;
+    int ns = 100;
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
-    hitable *list[2];
+    //hitable *list[1];
     float R = cos(M_PI/4);
-    hitable *world = new hitable_list(list,2);
-    world = two_perlin_spheres();
+    //hitable *world = new hitable_list(list,1);
+    hitable *world = two_perlin_spheres(); 
     
     vec3 lookfrom(13,2,3);
     vec3 lookat(0,0,0);
     float dist_to_focus = 10.0; 
     float aperture = 0.0;
+    
     camera cam(lookfrom, lookat, vec3(0,1,0), 20, float(nx)/float(ny), aperture, dist_to_focus, 0.0, 1.0);
     for (int j = ny-1; j >= 0; j--) {
         for (int i = 0; i < nx; i++) {
