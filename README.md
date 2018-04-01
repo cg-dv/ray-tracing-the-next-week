@@ -10,7 +10,7 @@ in this book.
 
 ## Example Images
 
-![Empty Cornell box](/example_images/ch07_example.png?raw=true "Empty Cornell box")
+![Cornell box with translucent prisms](/example_images/ch07_example.png?raw=true "Empty Cornell box")
 ![Cornell box](/example_images/ch08_example.png?raw=true "Cornell box")
-![Cornell box with translucent prisms](/example_images/ch09_example.png?raw=true "Translucent prisms")
 ![Perlin noise](/example_images/ch04_example.png?raw=true "Perlin noise")
+![Empty Cornell box](/example_images/ch06_example.png?raw=true "Cornell box")
